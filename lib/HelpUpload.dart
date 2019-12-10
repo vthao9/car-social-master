@@ -20,6 +20,7 @@ class _HelpUploadState extends State<HelpUpload>{
   final formKey = new GlobalKey<FormState>();
   String _title;
   String _description;
+  String _contact;
 
   bool Save(){
     final form = formKey.currentState;
@@ -43,6 +44,7 @@ class _HelpUploadState extends State<HelpUpload>{
     var data = {
       "title": _title,
       "description": _description,
+      "contact": _contact,
       "date": date,
       "time": time,
     };
@@ -89,6 +91,16 @@ class _HelpUploadState extends State<HelpUpload>{
                 },
                 onSaved: (value1){
                   return _description = value1;
+                },
+              ),
+              SizedBox(height: 15,),
+              TextFormField(
+                decoration: new InputDecoration(labelText: 'Contact Info'),
+                validator: (value2){
+                  return value2.isEmpty ? "Contact Info is required" : null;
+                },
+                onSaved: (value2){
+                  return _contact = value2;
                 },
               ),
               SizedBox(height: 15,),

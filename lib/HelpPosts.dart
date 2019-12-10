@@ -1,4 +1,4 @@
 class HelpPosts{
-  String title, description, date, time;
-  HelpPosts(this.title, this.description, this.date, this.time);
+  String title, description, contact, date, time;
+  HelpPosts(this.title, this.description, this.contact, this.date, this.time);
 }

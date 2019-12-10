@@ -19,6 +19,7 @@ environment:
 dependencies:
   file_picker: ^1.4.2
   image_picker:
+  http:
   intl: ^0.15.7
   firebase_database:
   firebase_storage:

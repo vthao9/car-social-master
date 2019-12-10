@@ -41,6 +41,7 @@ class _HelpPageState extends State<HelpPage>{
         HelpPosts post = new HelpPosts(
           DATA[singleKey]['title'],
           DATA[singleKey]['description'],
+          DATA[singleKey]['contact'],
           DATA[singleKey]['date'],
           DATA[singleKey]['time'],
         );
@@ -130,7 +131,7 @@ class _HelpPageState extends State<HelpPage>{
         child: posts.length == 0 ? new Text("There are no post.") : new ListView.builder(
             itemCount: posts.length,
             itemBuilder: (_, index){
-              return PostsUI(posts[index].title, posts[index].description, posts[index].time, posts[index].date);
+              return PostsUI(posts[index].title, posts[index].description, posts[index].contact, posts[index].time, posts[index].date);
             }
         ),
       ),
@@ -161,7 +162,7 @@ class _HelpPageState extends State<HelpPage>{
       ),
     );
   }
-  Widget PostsUI(String title, String description, String date, String time){
+  Widget PostsUI(String title, String description, String contact, String date, String time){
     return new Card(
       elevation: 10,
       margin: EdgeInsets.all(15),
@@ -194,6 +195,12 @@ class _HelpPageState extends State<HelpPage>{
             SizedBox(height: 15,),
             new Text(
               "Description of Problem: " + description,
+              style: Theme.of(context).textTheme.body1,
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 15,),
+            new Text(
+              "Contact Info: " + contact,
               style: Theme.of(context).textTheme.body1,
               textAlign: TextAlign.center,
             ),

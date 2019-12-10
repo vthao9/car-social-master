@@ -19,6 +19,7 @@ class _CommentPageState extends State<EventPostPage>{
   final formKey = new GlobalKey<FormState>();
   String _myInput = '';
   String _myInput1 = '';
+  String _location;
 
   bool Save(){
     final form = formKey.currentState;
@@ -42,6 +43,7 @@ class _CommentPageState extends State<EventPostPage>{
     var data = {
       "event_title": _myInput,
       "event_description": _myInput1,
+      "location": _location,
       "date": date,
       "time": time,
     };
@@ -88,6 +90,16 @@ class _CommentPageState extends State<EventPostPage>{
                 },
                 onSaved: (value1){
                   return _myInput1 = value1;
+                },
+              ),
+              SizedBox(height: 15,),
+              TextFormField(
+                decoration: new InputDecoration(labelText: 'Location'),
+                validator: (value1){
+                  return value1.isEmpty ? "Location is required" : null;
+                },
+                onSaved: (value2){
+                  return _location = value2;
                 },
               ),
               SizedBox(height: 15,),
