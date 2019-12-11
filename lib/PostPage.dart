@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'CarEvent.dart';
 import 'HelpPage.dart';
 import 'SalesPage.dart';
+import 'WebScrap.dart';
 import 'upload.dart';
 import 'package:car_social/Posts.dart';
 import 'package:car_social/Comment.dart';
@@ -121,12 +122,12 @@ class _PostPageState extends State<PostPage>{
               },
             ),
             ListTile(
-              title: Text('Car Recognition'),
+              title: Text('Car News'),
               onTap: (){
                 Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context){
-                      return new VehicleRecPage();
+                      return new WebScrapPage();
                     })
                 );
               },
@@ -207,19 +208,19 @@ class _PostPageState extends State<PostPage>{
               style: Theme.of(context).textTheme.subhead,
               textAlign: TextAlign.center,
             ),
-            new RaisedButton(
-              child: new Text("Comment", style: new TextStyle(fontSize: 15)),
-              textColor: Colors.black,
-              color: Colors.tealAccent,
-              onPressed: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context){
-                      return new CommentPage();
-                    })
-                );
-              },
-            ),
+//            new RaisedButton(
+//              child: new Text("Comment", style: new TextStyle(fontSize: 15)),
+//              textColor: Colors.black,
+//              color: Colors.tealAccent,
+//              onPressed: (){
+//                Navigator.push(
+//                    context,
+//                    MaterialPageRoute(builder: (context){
+//                      return new CommentPage();
+//                    })
+//                );
+//              },
+//            ),
           ],
         ),
       ),

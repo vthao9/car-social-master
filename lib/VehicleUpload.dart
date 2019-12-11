@@ -7,6 +7,9 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
+import 'package:path/path.dart';
+import 'package:dio/adapter.dart';
 
 
 class VehicleUploadPage extends StatefulWidget{
@@ -24,29 +27,31 @@ class _VehicleUploadPageState extends State<VehicleUploadPage>{
     });
   }
 
-  void goPostPage(){
-    Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context){
-          return new PostPage();
-        }
-        )
-    );
-  }
-
-
-
-  submitForm() async {
+  Future submitForm() async {
+//    String url = 'https://dev.sighthoundapi.com/v1/recognition?objectType=vehicle';
+//    var client = new http.Client();
+//    try{
+//      var uriResponse = await client.post(
+//        url,
+//        headers: {"X-Access-Token": "dssaFfIwfYow8SS5DX9tHLFq2Pe68MxkQab2"},
+//        body: {"image": "https://img.autobytel.com/car-reviews/autobytel/11694-good-looking-sports-cars/2016-Ford-Mustang-GT-burnout-red-tire-smoke.jpg"}
+//      );
+//      print(await client.get(uriResponse.body));
+//    }
+//    finally {
+//      client.close();
+//    }
     var body = "base64Encode(selectanimage.readAsBytesSync())";
+    var body1 = jsonEncode("https://img.autobytel.com/car-reviews/autobytel/11694-good-looking-sports-cars/2016-Ford-Mustang-GT-burnout-red-tire-smoke.jpg");
     String url = 'https://dev.sighthoundapi.com/v1/recognition?objectType=vehicle';
-    final response = await http.post(url,
+    final response = await http.put(url,
       headers: {
-      "Content-Type": "application/json",
-      "X-Access-Token": "dssaFfIwfYow8SS5DX9tHLFq2Pe68MxkQab2"
+      HttpHeaders.contentTypeHeader: 'application/json',
+      HttpHeaders.authorizationHeader: "dssaFfIwfYow8SS5DX9tHLFq2Pe68MxkQab2"
     },
     body: {
+      "image": body1
 //      base64Encode(selectanimage.readAsBytesSync())
-      "image": "https://img.autobytel.com/car-reviews/autobytel/11694-good-looking-sports-cars/2016-Ford-Mustang-GT-burnout-red-tire-smoke.jpg"
     },
     );
     if (response.statusCode == 200){
