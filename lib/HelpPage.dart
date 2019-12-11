@@ -8,6 +8,7 @@ import 'CarEvent.dart';
 import 'PostPage.dart';
 import 'SalesPage.dart';
 import 'HelpPosts.dart';
+import 'WebScrap.dart';
 import 'upload.dart';
 import 'package:car_social/Posts.dart';
 import 'package:car_social/Comment.dart';
@@ -120,6 +121,17 @@ class _HelpPageState extends State<HelpPage>{
                     context,
                     MaterialPageRoute(builder: (context){
                       return new HelpPage();
+                    })
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Car News'),
+              onTap: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context){
+                      return new WebScrapPage();
                     })
                 );
               },

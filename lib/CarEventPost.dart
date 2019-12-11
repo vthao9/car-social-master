@@ -20,6 +20,7 @@ class _CommentPageState extends State<EventPostPage>{
   String _myInput = '';
   String _myInput1 = '';
   String _location;
+  String _when;
 
   bool Save(){
     final form = formKey.currentState;
@@ -44,6 +45,7 @@ class _CommentPageState extends State<EventPostPage>{
       "event_title": _myInput,
       "event_description": _myInput1,
       "location": _location,
+      "when": _when,
       "date": date,
       "time": time,
     };
@@ -100,6 +102,16 @@ class _CommentPageState extends State<EventPostPage>{
                 },
                 onSaved: (value2){
                   return _location = value2;
+                },
+              ),
+              SizedBox(height: 15,),
+              TextFormField(
+                decoration: new InputDecoration(labelText: 'Time'),
+                validator: (value1){
+                  return value1.isEmpty ? "A Time is required" : null;
+                },
+                onSaved: (value2){
+                  return _when = value2;
                 },
               ),
               SizedBox(height: 15,),

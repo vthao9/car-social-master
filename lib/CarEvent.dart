@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'HelpPage.dart';
 import 'PostPage.dart';
 import 'SalesPage.dart';
+import 'WebScrap.dart';
 import 'upload.dart';
 import 'package:car_social/Posts.dart';
 import 'package:car_social/Comment.dart';
@@ -40,6 +41,7 @@ class _EventPageState extends State<EventPage>{
           DATA[singleKey]['event_title'],
           DATA[singleKey]['event_description'],
           DATA[singleKey]['location'],
+          DATA[singleKey]['when'],
           DATA[singleKey]['date'],
           DATA[singleKey]['time'],
         );
@@ -122,6 +124,17 @@ class _EventPageState extends State<EventPage>{
                 );
               },
             ),
+            ListTile(
+              title: Text('Car News'),
+              onTap: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context){
+                      return new WebScrapPage();
+                    })
+                );
+              },
+            ),
           ],
         ),
       ),
@@ -129,7 +142,7 @@ class _EventPageState extends State<EventPage>{
         child: posts.length == 0 ? new Text("There are no post.") : new ListView.builder(
             itemCount: posts.length,
             itemBuilder: (_, index){
-              return PostsUI(posts[index].event_title, posts[index].event_description, posts[index].location, posts[index].time, posts[index].date);
+              return PostsUI(posts[index].event_title, posts[index].event_description, posts[index].location, posts[index].when, posts[index].time, posts[index].date);
             }
         ),
       ),
@@ -160,7 +173,7 @@ class _EventPageState extends State<EventPage>{
       ),
     );
   }
-  Widget PostsUI(String event_title, String event_description, String location, String date, String time){
+  Widget PostsUI(String event_title, String event_description, String location, String when, String date, String time){
     return new Card(
       elevation: 10,
       margin: EdgeInsets.all(15),
@@ -199,6 +212,12 @@ class _EventPageState extends State<EventPage>{
             SizedBox(height: 15,),
             new Text(
               "Located at: " + location,
+              style: Theme.of(context).textTheme.body1,
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 15,),
+            new Text(
+              "Meeting at: " + when,
               style: Theme.of(context).textTheme.body1,
               textAlign: TextAlign.center,
             ),
